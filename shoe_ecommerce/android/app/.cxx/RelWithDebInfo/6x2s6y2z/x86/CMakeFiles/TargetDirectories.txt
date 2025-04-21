@@ -1,0 +1,2 @@
+/Users/vaishnavipatil/flutter_projects/shoe_ecommerce/android/app/.cxx/RelWithDebInfo/6x2s6y2z/x86/CMakeFiles/edit_cache.dir
+/Users/vaishnavipatil/flutter_projects/shoe_ecommerce/android/app/.cxx/RelWithDebInfo/6x2s6y2z/x86/CMakeFiles/rebuild_cache.dir

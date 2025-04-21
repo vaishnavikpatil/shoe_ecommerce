@@ -1,0 +1,1 @@
+/Users/vaishnavipatil/flutter_projects/shoe_ecommerce/build/app/intermediates/cxx/RelWithDebInfo/6x2s6y2z/obj/arm64-v8a
