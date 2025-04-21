@@ -1,37 +1,63 @@
-🛒 Full-Stack E-Commerce App
-A production-ready e-commerce platform built with Flutter & Dart on the frontend, Node.js & Express on the backend, MongoDB for the database, and AWS for hosting and image storage. 🚀
 
-🌟 Features
-Authentication: Sign up, log in, and manage profiles 🔒
 
-Product Catalog: Browse, filter, and sort products 🛍️
+# Full-Stack E-Commerce App
 
-Product Details: View images, descriptions, prices 📸
+**Full-Stack E-Commerce App** is a complete online shopping platform built using Flutter for the frontend, Node.js with Express for the backend, MongoDB for the database, and AWS for hosting and image storage. The goal was to create a production-ready app with clean architecture and best practices.
 
-Cart: Add/remove products and place orders 🛒
+## Features
 
-Favourites: Save products for later ❤️
+- **User Authentication:** Sign up, login, and manage your account with secure authentication (JWT and bcrypt).
+- **Product Catalog:** Browse all products, check out popular items, or view new arrivals.
+- **Search and Filters:** Search for products and filter by price, category, and other criteria.
+- **Product Details:** View detailed product information (images, descriptions, pricing) and add to cart or favorites.
+- **Cart Management:** Review cart items, change quantities, remove items, and place orders.
+- **User Profile:** Update personal information and reset password.
+- **Responsive Design:** Optimized for a fast, smooth user experience with Flutter's cross-platform capabilities.
 
-💻 Tech Stack
-Frontend: Flutter & Dart 🦋
+## Tech Stack
 
-Backend: Node.js & Express ⚙️
+- **Frontend:** Flutter, Dart
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Authentication:** JWT, bcrypt
+- **Hosting & Image Storage:** AWS EC2 (Backend), MongoDB Atlas (Database), AWS S3 (Images)
 
-Database: MongoDB 🗃️
+## Getting Started
 
-Hosting: AWS EC2, S3 for images ☁️
+### Prerequisites
 
-Authentication: JWT, Bcrypt 🔑
+Make sure you have the following installed:
 
-🏗️ Architecture
-Frontend: Modular architecture with features like auth, products, cart, etc. 🧩
+- [Flutter SDK](https://docs.flutter.dev/get-started/install)
+- [Dart](https://dart.dev/get-dart)
+- [Node.js](https://nodejs.org/en/) for backend development
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for database management
+- [AWS CLI](https://aws.amazon.com/cli/) for managing AWS resources
 
-Backend: RESTful API with JWT authentication and bcrypt for password security 🔐
 
-🚀 Deployment
-Backend: Hosted on AWS EC2 💻
 
-Database: MongoDB Atlas 🗄️
+## Folder Structure
 
+- **/lib:** Frontend code for screens, widgets, models, and services.
+- **/backend:** Contains all the backend code (Node.js, Express, routes, controllers).
+- **/config:** Holds configurations like MongoDB connection and AWS S3 integration.
+- **/models:** Defines MongoDB models for products, users, and orders.
+- **/assets/images:** Stores images for the product catalog.
+
+
+## Deployment
+
+- Backend is hosted on **AWS EC2**.
+- Database is hosted on **MongoDB Atlas**.
+
+
+
+
+## Acknowledgments
+
+- Flutter and Dart for the frontend development.
+- Node.js and Express for the backend.
+- MongoDB for handling dynamic data.
+- AWS for hosting and image storage.
 
 
