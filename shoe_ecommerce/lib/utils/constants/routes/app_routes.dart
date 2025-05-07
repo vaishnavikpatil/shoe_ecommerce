@@ -3,6 +3,7 @@
 import 'package:shoe_ecommerce/export.dart';
 
 import 'package:shoe_ecommerce/screens/order/checkout_screen.dart';
+import 'package:shoe_ecommerce/screens/order/order_list.dart';
 
 
 
@@ -107,6 +108,11 @@ class AppRouter {
           path: RouteNames.cart,
           name: RouteNames.cart,
           builder: (context, state) =>   const CartScreen(),
+        ),
+           _createRoute(
+          path: RouteNames.orderList,
+          name: RouteNames.orderList,
+          builder: (context, state) =>   const OrderListScreen(),
         ),
    _createRoute(
   path: RouteNames.productDetails,

@@ -44,6 +44,59 @@ const addProduct = async (req, res) => {
   }
 };
 
+// Update a product
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+  
+  // Validate the update data
+  const error = validateProduct(updateData);
+  if (error) {
+    return res.status(400).json({ message: 'Validation failed', data: error });
+  }
+
+  try {
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true }
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: 'Product not found', data: {} });
+    }
+
+    res.status(200).json({
+      message: 'Product updated successfully',
+      data: updatedProduct
+    });
+  } catch (err) {
+    console.error('Error updating product:', err);
+    res.status(500).json({ message: 'Failed to update product', error: err.message });
+  }
+};
+
+// Remove a product
+const removeProduct = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedProduct = await Product.findByIdAndDelete(id);
+    
+    if (!deletedProduct) {
+      return res.status(404).json({ message: 'Product not found', data: {} });
+    }
+
+    res.status(200).json({
+      message: 'Product removed successfully',
+      data: { productId: id }
+    });
+  } catch (err) {
+    console.error('Error removing product:', err);
+    res.status(500).json({ message: 'Failed to remove product', error: err.message });
+  }
+};
+
 // Get all products with optional pagination
 const getProductList = async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
@@ -145,11 +198,95 @@ const getNewArrivals = async (req, res) => {
   }
 };
 
+// Bulk upload products function (no external dependencies)
+const bulkUploadProducts = async (req, res) => {
+  try {
+    // Check if request body contains products array
+    if (!req.body.products || !Array.isArray(req.body.products) || req.body.products.length === 0) {
+      return res.status(400).json({ message: 'Products array is required', data: null });
+    }
+
+    const products = req.body.products;
+    const results = [];
+    const errors = [];
+    let processed = 0;
+    let successful = 0;
+
+    // Process each product in the array
+    for (const productData of products) {
+      processed++;
+      
+      try {
+        // Validate required fields
+        if (!productData.name || !productData.price) {
+          errors.push(`Product ${processed}: Missing required fields (name or price)`);
+          continue;
+        }
+
+        // Create clean product object with only the fields we want
+        const cleanProduct = {
+          name: productData.name,
+          description: productData.description || '',
+          brandname: productData.brandname || '',
+          price: parseFloat(productData.price),
+          images: Array.isArray(productData.images) ? productData.images : 
+                 (typeof productData.images === 'string' ? productData.images.split(',').map(img => img.trim()) : []),
+          sizes: Array.isArray(productData.sizes) ? productData.sizes : 
+                (typeof productData.sizes === 'string' ? productData.sizes.split(',').map(size => size.trim()) : []),
+          color: productData.color || '',
+          category: productData.category || 'Uncategorized',
+          stock: parseInt(productData.stock || 0, 10),
+          ratings: productData.ratings || 0,
+          discount: parseFloat(productData.discount || 0),
+          isFeatured: productData.isFeatured === 'true' || productData.isFeatured === true || false,
+          isActive: productData.isActive === 'true' || productData.isActive === true || true,
+          isPopular: productData.isPopular === 'true' || productData.isPopular === true || false,
+          isNew: productData.isNew === 'true' || productData.isNew === true || false,
+          createdBy: productData.createdBy || 'bulk-upload'
+        };
+
+        // Optional validation
+        const error = validateProduct(cleanProduct);
+        if (error) {
+          errors.push(`Product ${processed}: Validation failed - ${JSON.stringify(error)}`);
+          continue;
+        }
+
+        results.push(cleanProduct);
+        successful++;
+      } catch (error) {
+        errors.push(`Product ${processed}: ${error.message}`);
+      }
+    }
+
+    // Insert all valid products into the database
+    if (results.length > 0) {
+      await Product.insertMany(results);
+    }
+
+    res.status(200).json({
+      message: 'Bulk upload completed',
+      data: {
+        total: processed,
+        successful,
+        failed: processed - successful,
+        errors: errors.length > 0 ? errors : null
+      }
+    });
+  } catch (error) {
+    console.error('Error in bulk upload:', error);
+    res.status(500).json({ message: 'Server error during bulk upload', error: error.message });
+  }
+};
+
 module.exports = {
   addProduct,
+  updateProduct,
+  removeProduct,
   getProductList,
   getProductDetails,
   filterProduct,
   getPopularProducts,
-  getNewArrivals
+  getNewArrivals,
+  bulkUploadProducts
 };

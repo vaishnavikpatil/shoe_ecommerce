@@ -14,6 +14,7 @@ class RouteNames {
   static const String cart= '/cart';
   static const String checkout= '/checkout';
   static const String settings= '/settings';
+  static const String orderList= '/orderList';
   
  
 }

@@ -1,0 +1,47 @@
+/* Add this to a new CSS file or to your existing CSS file */
+
+/* Override default styles that are causing layout issues */
+:root {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: block; /* Override the flex display */
+  place-items: unset; /* Remove the centering */
+  min-height: 100vh;
+  width: 100%;
+  background-color: white;
+}
+
+/* Main layout fixes */
+#root {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: white;
+}
+
+/* Table styles to ensure proper width */
+table {
+  width: 100%;
+
+}
+
+/* Make sure the order management content fills the available space */
+.order-content {
+  width: 100%;
+  background-color: white;
+  min-height: calc(100vh - 70px); /* Subtract header height */
+  overflow: auto;
+}
+
+/* Ensure all parent containers don't restrict width */
+.main-container, 
+.content-container,
+.page-container {
+  width: 100%;
+  background-color: white;
+}
