@@ -1,11 +1,10 @@
-
-
 # Full-Stack E-Commerce App
 
-**Full-Stack E-Commerce App** is a complete online shopping platform built using Flutter for the frontend, Node.js with Express for the backend, MongoDB for the database, and AWS for hosting and image storage. The goal was to create a production-ready app with clean architecture and best practices.
+**Full-Stack E-Commerce App** is a complete online shopping platform built using **Flutter** for the frontend, **Node.js with Express** for the backend, **MongoDB** for the database, and **AWS** for hosting and image storage. The goal was to create a production-ready app with clean architecture and best practices.
 
 ## Features
 
+### User App (Flutter)
 - **User Authentication:** Sign up, login, and manage your account with secure authentication (JWT and bcrypt).
 - **Product Catalog:** Browse all products, check out popular items, or view new arrivals.
 - **Search and Filters:** Search for products and filter by price, category, and other criteria.
@@ -14,12 +13,20 @@
 - **User Profile:** Update personal information and reset password.
 - **Responsive Design:** Optimized for a fast, smooth user experience with Flutter's cross-platform capabilities.
 
+### Admin Panel (React)
+- **Inventory Management:** Add, edit, or delete products.
+- **Order Management:** View and update order statuses:
+  - Order Accepted, Processing, In Transit, Shipped, Delivered
+  - Optional statuses: Cancelled, Returned, Exchanged
+- **User Management:** View user list and monitor order history.
+
 ## Tech Stack
 
-- **Frontend:** Flutter, Dart
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
-- **Authentication:** JWT, bcrypt
+- **Frontend (User):** Flutter, Dart  
+- **Frontend (Admin):** React.js  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** JWT, bcrypt  
 - **Hosting & Image Storage:** AWS EC2 (Backend), MongoDB Atlas (Database), AWS S3 (Images)
 
 ## Getting Started
@@ -33,31 +40,27 @@ Make sure you have the following installed:
 - [Node.js](https://nodejs.org/en/) for backend development
 - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) for database management
 - [AWS CLI](https://aws.amazon.com/cli/) for managing AWS resources
-
-
+- [React.js](https://reactjs.org/) for the admin dashboard
 
 ## Folder Structure
 
-- **/lib:** Frontend code for screens, widgets, models, and services.
-- **/backend:** Contains all the backend code (Node.js, Express, routes, controllers).
-- **/config:** Holds configurations like MongoDB connection and AWS S3 integration.
-- **/models:** Defines MongoDB models for products, users, and orders.
-- **/assets/images:** Stores images for the product catalog.
-
+- **/lib:** Flutter frontend code (screens, widgets, models, services)
+- **/admin-panel:** React admin panel
+- **/backend:** Node.js backend (routes, controllers)
+- **/config:** Configuration files (MongoDB connection, AWS S3)
+- **/models:** MongoDB models for products, users, and orders
+- **/assets/images:** Static assets and product images
 
 ## Deployment
 
-- Backend is hosted on **AWS EC2**.
-- Database is hosted on **MongoDB Atlas**.
-
-
-
+- Backend is hosted on **AWS EC2**
+- Database is hosted on **MongoDB Atlas**
+- Image assets are stored in **AWS S3**
 
 ## Acknowledgments
 
-- Flutter and Dart for the frontend development.
-- Node.js and Express for the backend.
-- MongoDB for handling dynamic data.
-- AWS for hosting and image storage.
-
-
+- Flutter and Dart for the frontend development  
+- React.js for the admin panel  
+- Node.js and Express for the backend  
+- MongoDB for handling dynamic data  
+- AWS for hosting and image storage
